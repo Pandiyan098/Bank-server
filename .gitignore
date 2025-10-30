@@ -1,0 +1,77 @@
+# -------------------------
+# Node.js + TypeScript .gitignore
+# -------------------------
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# Build output (TypeScript, webpack, etc.)
+dist/
+build/
+out/
+lib/
+.tmp/
+
+# TypeScript cache and build info
+*.tsbuildinfo
+
+# Coverage reports
+coverage/
+.nyc_output/
+*.lcov
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Package manager files
+.yarn-integrity
+.pnp.*
+.npm
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Optional: comment out lockfile lines above if you want to commit them
+
+# Test-related
+jest-html-reporters-*.html
+test-results/
+
+# Parcel / Vite / Snowpack / Next / etc.
+.cache/
+.parcel-cache/
+.vite/
+.svelte-kit/
+.next/
+.nuxt/
+out/
+public/
+
+# Temporary files
+tmp/
+temp/
