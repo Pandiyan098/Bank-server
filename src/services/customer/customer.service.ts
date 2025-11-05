@@ -56,4 +56,52 @@ export class CustomerService {
       throw new Error(error.message || 'Failed to fetch customers');
     }
   }
+
+  async updateCustomer(customerId: number, updates: Partial<Customer>) {
+  try {
+    // Check if customer exists
+    const existingCustomer = await customerDao.findById(customerId);
+    if (!existingCustomer) {
+      throw new Error('Customer not found');
+    }
+
+    // If email is being updated, check for duplicates
+    if (updates.email && updates.email !== existingCustomer.email) {
+      try {
+        const emailExists = await customerDao.findByEmail(updates.email);
+        if (emailExists) {
+          throw new Error('Email already exists');
+        }
+      } catch (error: any) {
+        if (error.code !== 'PGRST116') {
+          throw error;
+        }
+      }
+    }
+
+    // Update customer
+    const updatedCustomer = await customerDao.update(customerId, updates);
+    return updatedCustomer;
+  } catch (error: any) {
+    console.error('Update customer service error:', error);
+    throw new Error(error.message || 'Failed to update customer');
+  }
+}
+
+async deleteCustomer(customerId: number) {
+  try {
+    // Check if customer exists
+    const existingCustomer = await customerDao.findById(customerId);
+    if (!existingCustomer) {
+      throw new Error('Customer not found');
+    }
+
+    // Delete customer
+    await customerDao.delete(customerId);
+    return { success: true, message: 'Customer deleted successfully' };
+  } catch (error: any) {
+    console.error('Delete customer service error:', error);
+    throw new Error(error.message || 'Failed to delete customer');
+  }
+}
 }

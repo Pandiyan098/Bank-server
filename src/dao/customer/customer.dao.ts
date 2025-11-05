@@ -77,4 +77,37 @@ export class CustomerDao {
       throw error;
     }
   }
+
+  async update(customerId: number, updates: Partial<Customer>) {
+  try {
+    const { data, error } = await supabase
+      .from(this.tableName)
+      .update(updates)
+      .eq('customer_id', customerId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  } catch (error: any) {
+    console.error('Update customer DAO error:', error);
+    throw error;
+  }
 }
+
+async delete(customerId: number) {
+  try {
+    const { error } = await supabase
+      .from(this.tableName)
+      .delete()
+      .eq('customer_id', customerId);
+
+    if (error) throw error;
+    return { success: true };
+  } catch (error: any) {
+    console.error('Delete customer DAO error:', error);
+    throw error;
+  }
+}
+}
+
