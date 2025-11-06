@@ -19,4 +19,8 @@ router.put('/:id', customerController.updateCustomer);
 // DELETE - Delete customer by ID
 router.delete('/:id', customerController.deleteCustomer);
 
+
+// POST - Get request headers and body info
+router.post('/request-info', customerController.getRequestInfo);
+
 export default router;

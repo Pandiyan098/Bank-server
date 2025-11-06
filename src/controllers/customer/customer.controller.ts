@@ -194,4 +194,31 @@ async deleteCustomer(req: Request, res: Response): Promise<void> {
     });
   }
 }
+
+
+
+async getRequestInfo(req: Request, res: Response): Promise<void> {
+  try {
+    const responseData = {
+      success: true,
+      message: 'Request information retrieved successfully',
+      data: {
+        headers: req.headers,
+        body: req.body,
+        method: req.method,
+        url: req.url,
+        query: req.query,
+        params: req.params
+      }
+    };
+
+    res.status(200).json(responseData);
+  } catch (error: any) {
+    console.error('Get request info controller error:', error);
+    res.status(500).json({ 
+      success: false,
+      error: error.message || 'Failed to get request info' 
+    });
+  }
+}
 }

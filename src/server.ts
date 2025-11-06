@@ -71,18 +71,22 @@ const startServer = async () => {
     await testConnection();
     
     app.listen(PORT, () => {
-      console.log(`\n${'='.repeat(50)}`);
+      console.log(`\n${'='.repeat(60)}`);
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`🔗 Server URL: http://localhost:${PORT}`);
       console.log(`💚 Supabase: Connected`);
       console.log(`\n📋 Available Endpoints:`);
-      console.log(`   GET  /health - Health check`);
-      console.log(`   GET  /db-status - Database status`);
-      console.log(`   POST /api/customers - Create customer`);
-      console.log(`   GET  /api/customers/:id - Get customer by ID`);
-      console.log(`   GET  /api/customers - Get all customers`);
-      console.log(`${'='.repeat(50)}\n`);
+      console.log(`   GET    /health - Health check`);
+      console.log(`   GET    /db-status - Database status`);
+      console.log(`\n   👤 Customer Endpoints:`);
+      console.log(`   POST   /api/customers - Create customer`);
+      console.log(`   GET    /api/customers - Get all customers`);
+      console.log(`   GET    /api/customers/:id - Get customer by ID`);
+      console.log(`   PUT    /api/customers/:id - Update customer by ID`);
+      console.log(`   DELETE /api/customers/:id - Delete customer by ID`);
+      console.log(`   POST   /api/customers/request-info - Get request headers & body`);
+      console.log(`${'='.repeat(60)}\n`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);

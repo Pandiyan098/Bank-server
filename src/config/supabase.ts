@@ -22,7 +22,7 @@ export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey, {
 export const testConnection = async (): Promise<boolean> => {
   try {
     // Try to query Supabase - this will verify the connection
-    const { error } = await supabase.from('_test').select('*').limit(1);
+    const { error } = await supabase.from('test_table').select('*').limit(1);
     
     // If error is just that table doesn't exist, connection is still OK
     if (error && error.code !== 'PGRST116' && error.code !== '42P01') {
